@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary: #0ea5e9;
+  --accent: #8b5cf6;
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #ef4444;
+  --background: #f8fafc;
+  --surface: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 font-semibold tracking-tight;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-all
+           focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
+           hover:scale-105 active:scale-95 duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-dark focus:ring-primary
+           shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 focus:ring-primary
+           shadow hover:shadow-md;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-slate-200 transition-all duration-300
+           hover:shadow-md;
+  }
+
+  .slide-panel {
+    @apply fixed top-0 right-0 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out;
+  }
+
+  .slide-panel-open {
+    @apply translate-x-0;
+  }
+
+  .slide-panel-closed {
+    @apply translate-x-full;
+  }
+
+  .wizard-step {
+    @apply relative p-6 border-l-4 transition-all duration-200;
+  }
+
+  .wizard-step-active {
+    @apply border-primary bg-slate-50;
+  }
+
+  .wizard-step-completed {
+    @apply border-success;
+  }
+
+  .wizard-step-pending {
+    @apply border-slate-200;
+  }
+
+  .upload-zone {
+    @apply border-2 border-dashed border-slate-300 rounded-lg p-8 text-center
+           transition-all duration-200 hover:border-primary hover:bg-slate-50
+           cursor-pointer;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-slate-200 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-primary transition-all duration-300 ease-out;
+  }
+
+  .floating-action-button {
+    @apply fixed bottom-6 right-6 p-4 rounded-full bg-primary text-white shadow-lg
+           hover:bg-primary-dark hover:scale-110 transition-all duration-200
+           active:scale-95;
+  }
+
+  .overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300;
+  }
+
+  .overlay-enter {
+    @apply opacity-0;
+  }
+
+  .overlay-enter-active {
+    @apply opacity-100;
+  }
+
+  .overlay-exit {
+    @apply opacity-100;
+  }
+
+  .overlay-exit-active {
+    @apply opacity-0;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out forwards;
+}
